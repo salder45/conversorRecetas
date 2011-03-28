@@ -1,5 +1,7 @@
 package org.comedor
+import grails.plugins.springsecurity.Secured
 
+@Secured(['ROLE_ADMIN'])
 class RolController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]

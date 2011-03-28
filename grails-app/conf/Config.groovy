@@ -88,8 +88,21 @@ log4j = {
     debug 'grails.app','org.hibernate.SQL'
 }
 
+grails.gorm.default.mapping = {
+   cache true
+   id generator:'identity'
+}
+
+grails.gorm.failOnError = true
+grails.views.javascript.library="jquery"
+
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'org.comedor.Usuario'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'org.comedor.UsuarioRol'
 grails.plugins.springsecurity.authority.className = 'org.comedor.Rol'
+grails.plugins.springsecurity.roleHierarchy='''
+ROLE_SUPERADMIN > ROLE_ADMIN
+ROLE_ADMIN >ROLE_USER
+ROLE_USER >ROLE_COCINERO
+'''
 
