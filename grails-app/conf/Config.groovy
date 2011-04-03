@@ -101,7 +101,8 @@ grails.plugins.springsecurity.userLookup.userDomainClassName = 'org.comedor.Usua
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'org.comedor.UsuarioRol'
 grails.plugins.springsecurity.authority.className = 'org.comedor.Rol'
 grails.plugins.springsecurity.roleHierarchy='''
-ROLE_SUPERADMIN > ROLE_ADMIN
+ROLE_SUPER >ROLE_ADMIN
+ROLE_ADMIN >ROLE_USER
 ROLE_ADMIN >ROLE_USER
 ROLE_USER >ROLE_COCINERO
 '''

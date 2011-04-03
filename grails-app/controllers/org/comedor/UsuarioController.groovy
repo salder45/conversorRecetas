@@ -1,7 +1,7 @@
 package org.comedor
 import grails.plugins.springsecurity.Secured
 
-@Secured(['ROLE_ADMIN'])
+//@Secured(['ROLE_ADMIN'])
 class UsuarioController {
     def springSecurityService
     def usuarioService
@@ -10,11 +10,10 @@ class UsuarioController {
 
     def index = {
         log.debug "Index"
-        //redirect(action: "lista", params: params)
-        redirect(action: "busqueda", params: params)
+        redirect(action: "lista", params: params)
     }
 
-//@Secured(['ROLE_SUPERADMIN'])
+    //@Secured(['ROLE_SUPERADMIN'])
     def lista = {
         log.debug "Lista"
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
@@ -32,6 +31,10 @@ class UsuarioController {
         log.debug "Guardar"
         def usuario = new Usuario(params)
         usuario.password=springSecurityService.encodePassword(usuario.password)
+        usuario.accountExpired=false
+        usuario.accountLocked=false
+        usuario.enabled=true
+        usuario.passwordExpired=false
         if (usuario.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])}"
             redirect(action: "ver", id: usuario.id)
@@ -114,7 +117,7 @@ class UsuarioController {
         }
     }
 
-    def busqueda={
+    def agregaRol={
         log.debug "busqueda"
         log.debug params
     }

@@ -9,7 +9,7 @@ class Receta {
 
 
     static constraints = {
-        nombre maxSize:64,blank:false
+        nombre maxSize:64,blank:false,unique:true
         numPorciones scale:2, precision:8, blank:false
 
     }

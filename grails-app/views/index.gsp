@@ -11,8 +11,6 @@
       <span class="menuButton"><g:link class="admin" controller="admin" ><g:message code="admin.titulo" /></g:link></span>
       </sec:ifAnyGranted>
       <span class="menuButton"><g:link class="salir" controller="receta" ><g:message code="receta.titulo" /></g:link></span>
-      <span class="menuButton"><g:link class="salir" controller="ingrediente" ><g:message code="ingrediente.titulo" /></g:link></span>
-      <span class="menuButton"><g:link class="salir" controller="materiaPrima" ><g:message code="materiaPrima.titulo" /></g:link></span>
       <span class="menuButton"><g:link class="salir" controller="logout" ><g:message code="inicio.salir" /></g:link></span>
       </div>
   </body>

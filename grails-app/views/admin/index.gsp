@@ -8,7 +8,7 @@
     <div class="nav">
       <span class="menuButton"><a class="home" href="${resource(dir: '')}"><g:message code="inicio.home"/></a></span>
       <span class="menuButton"><g:link class="usuario" controller="usuario" ><g:message code="inicio.usuario"/></g:link></span>
-      <sec:ifAnyGranted roles="ROLE_SUPERADMIN">
+      <sec:ifAnyGranted roles="ROLE_SUPER">
       <span class="menuButton"><g:link class="rol" controller="rol" ><g:message code="inicio.rol"/></g:link></span>
       </sec:ifAnyGranted>
     </div>

@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="layout" content="main" />
   <g:set var="entityName" value="${message(code: 'usuario.label', default: 'Usuario')}" />
-  <title><g:message code="default.create.label" args="[entityName]" /></title>
+  <title><g:message code="usuario.crear" args="[entityName]" /></title>
 </head>
 <body>
   <div class="nav">
@@ -14,7 +14,7 @@
     <span class="menuButton"><g:link class="list" action="lista"><g:message code="usuario.lista" args="[entityName]" /></g:link></span>
   </div>
   <div class="body">
-    <h1><g:message code="default.create.label" args="[entityName]" /></h1>
+    <h1><g:message code="usuario.crear" args="[entityName]" /></h1>
     <g:if test="${flash.message}">
       <div class="message">${flash.message}</div>
     </g:if>
@@ -30,7 +30,7 @@
 
             <tr class="prop">
               <td valign="top" class="name">
-                <label for="username"><g:message code="usuario.username.label" default="Username" /></label>
+                <label for="username"><g:message code="usuario.username" default="Username" /></label>
               </td>
               <td valign="top" class="value ${hasErrors(bean: usuario, field: 'username', 'errors')}">
           <g:textField name="username" value="${usuario?.username}" />
@@ -39,7 +39,7 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="password"><g:message code="usuario.password.label" default="Password" /></label>
+              <label for="password"><g:message code="usuario.password" default="Password" /></label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: usuario, field: 'password', 'errors')}">
           <g:passwordField name="password" value="${usuario?.password}" />
@@ -47,7 +47,7 @@
           </tr>
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="nombre"><g:message code="usuario.nombre.label" default="Nombre" /></label>
+              <label for="nombre"><g:message code="usuario.nombre" default="Nombre" /></label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: usuario, field: 'nombre', 'errors')}">
           <g:textField name="nombre" value="${usuario?.nombre}" />
@@ -56,7 +56,7 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="apPaterno"><g:message code="usuario.apPaterno.label" default="Apellido Paterno" /></label>
+              <label for="apPaterno"><g:message code="usuario.apPaterno" default="Apellido Paterno" /></label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: usuario, field: 'apPaterno', 'errors')}">
           <g:textField name="apPaterno" value="${usuario?.apPaterno}" />
@@ -64,7 +64,7 @@
           </tr>
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="apMaterno"><g:message code="usuario.apMaterno.label" default="Apellido Materno" /></label>
+              <label for="apMaterno"><g:message code="usuario.apMaterno" default="Apellido Materno" /></label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: usuario, field: 'apMaterno', 'errors')}">
           <g:textField name="apMaterno" value="${usuario?.apMaterno}" />
@@ -72,47 +72,12 @@
           </tr>
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="email"><g:message code="usuario.email.label" default="Email" /></label>
+              <label for="email"><g:message code="usuario.email" default="Email" /></label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: usuario, field: 'email', 'errors')}">
           <g:textField name="email" value="${usuario?.email}" />
           </td>
           </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="accountExpired"><g:message code="usuario.accountExpired.label" default="Account Expired" /></label>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: usuario, field: 'accountExpired', 'errors')}">
-          <g:checkBox name="accountExpired" value="${usuario?.accountExpired}" />
-          </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="accountLocked"><g:message code="usuario.accountLocked.label" default="Account Locked" /></label>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: usuario, field: 'accountLocked', 'errors')}">
-          <g:checkBox name="accountLocked" value="${usuario?.accountLocked}" />
-          </td>
-          </tr>
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="enabled"><g:message code="usuario.enabled.label" default="Enabled" /></label>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: usuario, field: 'enabled', 'errors')}">
-          <g:checkBox name="enabled" value="${usuario?.enabled}" />
-          </td>
-          </tr>
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="passwordExpired"><g:message code="usuario.passwordExpired.label" default="Password Expired" /></label>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: usuario, field: 'passwordExpired', 'errors')}">
-          <g:checkBox name="passwordExpired" value="${usuario?.passwordExpired}" />
-          </td>
-          </tr>
-
           </tbody>
         </table>
       </div>
