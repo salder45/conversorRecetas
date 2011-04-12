@@ -39,15 +39,6 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="descripcion"><g:message code="ingrediente.descripcion.label" default="Descripcion" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: ingredienteInstance, field: 'descripcion', 'errors')}">
-                                    <g:textField name="descripcion" maxlength="64" value="${ingredienteInstance?.descripcion}" />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                     <label for="materia"><g:message code="ingrediente.materia.label" default="Materia" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: ingredienteInstance, field: 'materia', 'errors')}">

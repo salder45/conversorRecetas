@@ -26,6 +26,8 @@
                         
                             <g:sortableColumn property="nombre" title="${message(code: 'receta.nombre.label', default: 'Nombre')}" />
                         
+                            <g:sortableColumn property="procedimiento" title="${message(code: 'receta.procedimiento.label', default: 'Procedimiento')}" />
+                        
                             <g:sortableColumn property="numPorciones" title="${message(code: 'receta.numPorciones.label', default: 'Num Porciones')}" />
                         
                         </tr>
@@ -34,9 +36,11 @@
                     <g:each in="${recetaList}" status="i" var="receta">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="ver" id="${receta.id}">${fieldValue(bean: receta, field: "id")}</g:link></td>
+                            <td><g:link action="show" id="${receta.id}">${fieldValue(bean: receta, field: "id")}</g:link></td>
                         
                             <td>${fieldValue(bean: receta, field: "nombre")}</td>
+                        
+                            <td>${fieldValue(bean: receta, field: "procedimiento")}</td>
                         
                             <td>${fieldValue(bean: receta, field: "numPorciones")}</td>
                         

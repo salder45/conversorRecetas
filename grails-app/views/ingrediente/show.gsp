@@ -37,13 +37,6 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="ingrediente.descripcion.label" default="Descripcion" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: ingredienteInstance, field: "descripcion")}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
                             <td valign="top" class="name"><g:message code="ingrediente.materia.label" default="Materia" /></td>
                             
                             <td valign="top" class="value"><g:link controller="materiaPrima" action="show" id="${ingredienteInstance?.materia?.id}">${ingredienteInstance?.materia?.encodeAsHTML()}</g:link></td>

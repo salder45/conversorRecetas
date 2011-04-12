@@ -26,8 +26,6 @@
                         
                             <g:sortableColumn property="cantidad" title="${message(code: 'ingrediente.cantidad.label', default: 'Cantidad')}" />
                         
-                            <g:sortableColumn property="descripcion" title="${message(code: 'ingrediente.descripcion.label', default: 'Descripcion')}" />
-                        
                             <th><g:message code="ingrediente.materia.label" default="Materia" /></th>
                         
                             <th><g:message code="ingrediente.receta.label" default="Receta" /></th>
@@ -41,8 +39,6 @@
                             <td><g:link action="show" id="${ingredienteInstance.id}">${fieldValue(bean: ingredienteInstance, field: "id")}</g:link></td>
                         
                             <td>${fieldValue(bean: ingredienteInstance, field: "cantidad")}</td>
-                        
-                            <td>${fieldValue(bean: ingredienteInstance, field: "descripcion")}</td>
                         
                             <td>${fieldValue(bean: ingredienteInstance, field: "materia")}</td>
                         

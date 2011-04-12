@@ -103,7 +103,6 @@ grails.plugins.springsecurity.authority.className = 'org.comedor.Rol'
 grails.plugins.springsecurity.roleHierarchy='''
 ROLE_SUPER >ROLE_ADMIN
 ROLE_ADMIN >ROLE_USER
-ROLE_ADMIN >ROLE_USER
 ROLE_USER >ROLE_COCINERO
 '''
 

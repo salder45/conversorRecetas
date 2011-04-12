@@ -7,9 +7,4 @@ class RecetaService {
     def serviceMethod() {
 
     }
-
-    def addIngrediente(Integer id,Ingrediente ingrediente){
-        log.debug 'service addIngrediente'
-
-    }
 }
