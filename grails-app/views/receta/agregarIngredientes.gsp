@@ -46,8 +46,15 @@
             </tr>
             </thead>
             <tbody>
+            <g:each in="${receta.ingredientes}" var="i">
               <tr>
-                <td valign="top" class="value ${hasErrors(bean: materiaPrima, field: 'nombre', 'errors')}">
+              <td valign="top" align="left" class="value">${i.materia.nombre}</td>
+              <td valign="top" align="left" class="value">${i.cantidad}</td>
+              <td valign="top" align="left" class="value">${i.materia.unidadMedida}</td>              
+              </tr>
+            </g:each>
+            <tr>
+              <td valign="top" class="value ${hasErrors(bean: materiaPrima, field: 'nombre', 'errors')}">
             <g:textField name="nombre" value="${fieldValue(bean: materiaPrima, field: 'nombre')}" />
             </td>
             <td valign="top" class="value ${hasErrors(bean: ingrediente, field: 'cantidad', 'errors')}">
@@ -56,12 +63,12 @@
             <td valign="top" class="value ${hasErrors(bean: ingrediente, field: 'unidadMedida', 'errors')}">
             <g:select name="unidadMedida" from="${ingrediente.constraints.unidadMedida.inList}" value="${ingrediente?.unidadMedida}" valueMessagePrefix="materiaPrima.unidadMedida"  />
             </td>
+            <td>
+              <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'ingrediente.agregar', default: 'Create')}" /></span>
+            </td>
             </tr>
             </tbody>
           </table>
-          <div class="buttons">
-            <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
-          </div>
         </g:form>
       </div>
     </div>

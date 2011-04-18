@@ -12,6 +12,6 @@ class Ingrediente {
 
     static constraints = {
         cantidad scale:2, precision:8, blank:false
-        unidadMedida inList:['Kilogramo','Litro','Piezas']
+        unidadMedida inList:['Kilogramo','Gramo','Litro','Mililitro','Piezas']
     }
 }

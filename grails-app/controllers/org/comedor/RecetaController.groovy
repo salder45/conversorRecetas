@@ -32,6 +32,7 @@ class RecetaController {
         log.debug "guardar"
         log.debug "parametros guardar $params"
         def receta = new Receta(params)
+        receta.nombre=params.nombre.toUpperCase()
         if (receta.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'receta.label', default: 'Receta'), receta.id])}"
             redirect(action: "agregarIngredientes", id: receta.id)
@@ -123,7 +124,7 @@ class RecetaController {
         def receta=null
         if(params.nombre!=null){
         log.debug "Busca por nombre"
-        receta=Receta.findByNombre(params.nombre)
+        receta=Receta.findByNombre(params.nombre.toUpperCase())
         }else if(params.id!=null){
         log.debug "Busca por id"
         receta=Receta.get(params.id)
@@ -142,7 +143,37 @@ class RecetaController {
         log.debug "Params $params"
         MateriaPrima materia=materiaPrimaService.guardaMateriaPrima(params.nombre,params.unidadMedida)
         Receta receta=Receta.get(params.idReceta)
-        Ingrediente ingrediente=ingredienteService.guardaIngrediente(new BigDecimal(params.cantidad),receta,materia)
+        Ingrediente ingrediente=ingredienteService.guardaIngrediente(ingredienteService.convierteCantidadConUnidadMedida(params.unidadMedida,new BigDecimal(params.cantidad)),receta,materia)
         redirect(action:'agregarIngredientes',id:receta.id)
+    }
+
+    def capturaDatosConversor={
+        log.debug "capturaDatosConversor"
+        log.debug "params capturaDatosConversor$params"
+    }
+
+    def convertirReceta={
+        log.debug "capturaDatosConversor"
+        log.debug "Params $params"
+        Receta recetaTmp=new Receta()
+        recetaTmp.properties=params
+        Receta recetaConvertida=recetaService.convertirReceta(recetaTmp)
+        [recetaConvertida:recetaConvertida]
+    }
+
+    def capturaDatosEditar={
+     log.debug "capturaDatosEditar"
+     log.debug "Parametros $params"
+    }
+
+
+    def recetasByNombre={
+        log.debug "Recetas Busqueda por nombre $params"
+        def lista = []
+        for(receta in recetaService.listaByNombre(params?.nombre)) {
+            lista << [id:receta.id,value:receta.nombre]
+        }
+        def result = lista as grails.converters.JSON
+        render result
     }
 }

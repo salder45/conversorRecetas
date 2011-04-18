@@ -33,7 +33,7 @@
                 <label for="nombre"><g:message code="receta.nombre.label" default="Nombre" /></label>
               </td>
               <td valign="top" class="value ${hasErrors(bean: receta, field: 'nombre', 'errors')}">
-          <g:textField name="nombre" maxlength="64" value="${receta?.nombre}" />
+          <g:textField name="nombre" maxlength="128" value="${receta?.nombre}" />
           </td>
           </tr>
           <tr class="prop">

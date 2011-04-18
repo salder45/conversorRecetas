@@ -11,8 +11,15 @@ class Receta {
 
 
     static constraints = {
-        nombre maxSize:64,blank:false,unique:true
+        nombre maxSize:128,blank:false,unique:true
         procedimiento maxSize:512,blank:false
         numPorciones scale:2, precision:8, blank:false
+    }
+
+    static namedQueries = {
+        buscaPorNombre { filtro ->
+            filtro="%${filtro.toUpperCase()}%"
+            ilike 'nombre',filtro
+        }
     }
 }

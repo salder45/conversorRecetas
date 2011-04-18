@@ -17,4 +17,12 @@ class IngredienteService {
         ingrediente.save(flush:true)
         return ingrediente
     }
+
+    BigDecimal convierteCantidadConUnidadMedida(String unidadMedida,BigDecimal cantidad){
+        if(unidadMedida.equals("Gramo")||unidadMedida.equals("Mililitro")){
+            cantidad=cantidad.multiply(new BigDecimal('0.001'));
+        }
+        return cantidad;
+    }
+
 }

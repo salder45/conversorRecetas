@@ -15,9 +15,18 @@ class MateriaPrimaService {
             log.debug "materia nula"
             materia=new MateriaPrima()
             materia.nombre=nombre
-            materia.unidadMedida=unidadMedida
+            materia.unidadMedida=convierteStringUnidadMedida(unidadMedida)
             materia.save(flush:true)
         }        
         return materia
+    }
+
+    String convierteStringUnidadMedida(String unidadMedida){
+        if(unidadMedida.equals('Gramo')){
+        unidadMedida='Kilogramo'
+        }else if(unidadMedida.equals('Mililitro')){
+        unidadMedida='Litro'
+        }
+        return unidadMedida
     }
 }
