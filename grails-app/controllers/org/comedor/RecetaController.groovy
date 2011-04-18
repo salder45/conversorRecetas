@@ -170,7 +170,8 @@ class RecetaController {
     def recetasByNombre={
         log.debug "Recetas Busqueda por nombre $params"
         def lista = []
-        for(receta in recetaService.listaByNombre(params?.nombre)) {
+        for(receta in recetaService.listaByNombre(params?.term)) {
+            log.debug "Receta---!> $receta"
             lista << [id:receta.id,value:receta.nombre]
         }
         def result = lista as grails.converters.JSON

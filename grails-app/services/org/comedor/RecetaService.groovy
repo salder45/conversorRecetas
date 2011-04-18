@@ -38,13 +38,9 @@ class RecetaService {
     }
 
     def listaByNombre(filtro){
-        log.debug "Filtro $filtro"
-        filtro = "%${filtro.toUpperCase()}%"
+        log.debug "listaByNombre $filtro"
         def recetas=Receta.buscaPorNombre(filtro)
-        def resultados = [:] as TreeMap
-        for (resultado in recetas) {
-            resultados[resultado.nombre] = resultado
+        log.debug "Lista ${recetas.list()}"
+        return recetas.list()
         }
-        return resultados.values()
-    }
 }

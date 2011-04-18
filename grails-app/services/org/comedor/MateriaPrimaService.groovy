@@ -29,4 +29,11 @@ class MateriaPrimaService {
         }
         return unidadMedida
     }
+
+    def listaByNombre(filtro){
+        log.debug "listaByNombre $filtro"
+        def materias=MateriaPrima.buscaPorNombre(filtro)
+        log.debug "Lista ${materias.list()}"
+        return materias.list()
+        }
 }
