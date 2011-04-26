@@ -5,7 +5,7 @@ class MateriaPrima {
     String unidadMedida
 
     static constraints = {
-        nombre maxSize:64,blank:false,unique:true
+        nombre maxSize:128,blank:false,unique:true
         unidadMedida inList:['Kilogramo','Litro','Piezas']
     }
 

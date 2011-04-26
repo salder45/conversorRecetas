@@ -14,7 +14,7 @@ class MateriaPrimaService {
         if(!materia){
             log.debug "materia nula"
             materia=new MateriaPrima()
-            materia.nombre=nombre
+            materia.nombre=nombre.toUpperCase()
             materia.unidadMedida=convierteStringUnidadMedida(unidadMedida)
             materia.save(flush:true)
         }        

@@ -3,6 +3,7 @@ package org.comedor
 class MateriaPrimaController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    def materiaPrimaService
 
     def index = {
         redirect(action: "list", params: params)
@@ -96,5 +97,17 @@ class MateriaPrimaController {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), params.id])}"
             redirect(action: "list")
         }
+    }
+
+
+    def materiasByNombre={
+        log.debug "materiasByNombre $params"
+        def lista = []
+        for(materia in materiaPrimaService.listaByNombre(params?.term)) {
+            log.debug "Materia---!> $materia"
+            lista << [id:materia.id,value:materia.nombre]
+        }
+        def result = lista as grails.converters.JSON
+        render result
     }
 }
