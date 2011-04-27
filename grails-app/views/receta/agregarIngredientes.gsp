@@ -57,6 +57,7 @@
               <td valign="top" align="left" class="value">${i.materia.nombre}</td>
               <td valign="top" align="left" class="value">${i.cantidad}</td>
               <td valign="top" align="left" class="value">${i.materia.unidadMedida}</td>              
+              <td valign="top" align="left" class="value"><g:link controller="ingrediente" action="eliminar" id="${i.id}"><g:message code="ingrediente.eliminar" default="Eliminar" /></g:link></td>
             </tr>
           </g:each>
           <tr>

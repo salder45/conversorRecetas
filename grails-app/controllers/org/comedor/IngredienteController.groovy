@@ -79,13 +79,18 @@ class IngredienteController {
         }
     }
 
-    def delete = {
+    def eliminar = {
+        log.debug "Eliminar"
+        log.debug "Parametros $params"
         def ingredienteInstance = Ingrediente.get(params.id)
         if (ingredienteInstance) {
+            log.debug "Ingrediente $ingredienteInstance"
+            Receta receta=Receta.get(ingredienteInstance.receta.id)
+            log.debug "Receta $receta"
             try {
                 ingredienteInstance.delete(flush: true)
                 flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), params.id])}"
-                redirect(action: "list")
+                redirect(controller:'receta',action: "agregarIngredientes",id:receta.id)
             }
             catch (org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), params.id])}"
