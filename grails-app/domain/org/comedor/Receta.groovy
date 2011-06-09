@@ -8,8 +8,6 @@ class Receta {
 
     static hasMany=[ingredientes:Ingrediente]
 
-
-
     static constraints = {
         nombre maxSize:128,blank:false,unique:true
         procedimiento maxSize:512,blank:false
