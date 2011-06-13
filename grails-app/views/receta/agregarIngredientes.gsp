@@ -26,7 +26,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="receta.nombre" default="Nombre" /></td>
         <td valign="top" class="value">${fieldValue(bean: receta, field: "nombre")}</td>
-        <td valign="top" class="name"><g:message code="receta.porciones" default="Porciones" /></td>
+        <td valign="top" class="name"><g:message code="receta.cantidad" default="Cantidad" /></td>
         <td valign="top" class="value">${fieldValue(bean: receta, field: "numPorciones")}</td>
         </tr>
         <tr class="prop">
