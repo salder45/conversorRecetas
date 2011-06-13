@@ -6,7 +6,6 @@ class Usuario {
     String nombre
     String apPaterno
     String apMaterno
-    String email
     String password
     boolean enabled
     boolean accountExpired

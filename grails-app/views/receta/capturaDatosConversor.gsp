@@ -11,11 +11,11 @@
   <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery',file:'jquery.ui.autocomplete.min.js')}"></script>
 </head>
 <body>
-  <div class="nav">
+  <!--div class="nav">
     <span class="menuButton"><a class="home" href="${resource(dir: '')}"><g:message code="inicio.home" /></a> </span>
     <span class="menuButton"><g:link class="salir" controller="receta" action='crear' ><g:message code="receta.crear" /></g:link></span>
     <span class="menuButton"><g:link class="salir" controller="logout" ><g:message code="inicio.salir" /></g:link></span>
-  </div>
+  </div-->
   <div class="body">
     <g:form action="convertirReceta">
       <table>

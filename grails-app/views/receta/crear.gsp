@@ -9,10 +9,10 @@
   <title><g:message code="receta.titulo" args="[entityName]" /></title>
 </head>
 <body>
-  <div class="nav">
+  <!--div class="nav">
     <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
     <span class="menuButton"><g:link class="list" action="lista"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
-  </div>
+  </div-->
   <div class="body">
     <h1><g:message code="receta.titulo" args="[entityName]" /></h1>
     <g:if test="${flash.message}">

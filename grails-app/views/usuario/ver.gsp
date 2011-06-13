@@ -8,11 +8,11 @@
   <title><g:message code="usuario.ver" args="[entityName]" /></title>
 </head>
 <body>
-  <div class="nav">
+  <!--div class="nav">
     <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
     <span class="menuButton"><g:link class="list" action="lista"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
     <span class="menuButton"><g:link class="create" action="crear"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
-  </div>
+  </div-->
   <div class="body">
     <h1><g:message code="usuario.ver" args="[entityName]" /></h1>
     <g:if test="${flash.message}">
@@ -53,14 +53,6 @@
           <td valign="top" class="name"><g:message code="usuario.username.label" default="Username" /></td>
 
         <td valign="top" class="value">${fieldValue(bean: usuario, field: "username")}</td>
-
-        </tr>
-
-
-        <tr class="prop">
-          <td valign="top" class="name"><g:message code="usuario.email.label" default="Email" /></td>
-
-        <td valign="top" class="value">${fieldValue(bean: usuario, field: "email")}</td>
 
         </tr>
 

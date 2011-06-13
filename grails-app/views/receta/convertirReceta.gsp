@@ -5,12 +5,12 @@
     <meta name="layout" content="main" />
   </head>
   <body>
-    <div class="nav">
+    <!--div class="nav">
       <span class="menuButton"><a class="home" href="${resource(dir: '')}"><g:message code="inicio.home" /></a> </span>
       <span class="menuButton"><g:link class="salir" controller="receta" action='crear' ><g:message code="receta.crear" /></g:link></span>
       <span class="menuButton"><g:link class="salir" controller="receta" action='capturaDatosConversor' ><g:message code="receta.datos" /></g:link></span>
       <span class="menuButton"><g:link class="salir" controller="logout" ><g:message code="inicio.salir" /></g:link></span>
-    </div>
+    </div-->
     <div class="body">
       <h1><g:message code="default.show.label" args="[entityName]" /></h1>
       <g:if test="${flash.message}">

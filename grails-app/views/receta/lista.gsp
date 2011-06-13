@@ -8,10 +8,10 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="nav">
+        <!--div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
             <span class="menuButton"><g:link class="create" action="crear"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
-        </div>
+        </div-->
         <div class="body">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -36,7 +36,7 @@
                     <g:each in="${recetaList}" status="i" var="receta">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="show" id="${receta.id}">${fieldValue(bean: receta, field: "id")}</g:link></td>
+                            <td><g:link action="ver" id="${receta.id}">${fieldValue(bean: receta, field: "id")}</g:link></td>
                         
                             <td>${fieldValue(bean: receta, field: "nombre")}</td>
                         

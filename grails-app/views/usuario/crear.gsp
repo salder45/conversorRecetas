@@ -9,10 +9,10 @@
   <title><g:message code="usuario.crear" args="[entityName]" /></title>
 </head>
 <body>
-  <div class="nav">
+  <!--div class="nav">
     <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
     <span class="menuButton"><g:link class="list" action="lista"><g:message code="usuario.lista" args="[entityName]" /></g:link></span>
-  </div>
+  </div-->
   <div class="body">
     <h1><g:message code="usuario.crear" args="[entityName]" /></h1>
     <g:if test="${flash.message}">
@@ -68,14 +68,6 @@
             </td>
             <td valign="top" class="value ${hasErrors(bean: usuario, field: 'apMaterno', 'errors')}">
           <g:textField name="apMaterno" value="${usuario?.apMaterno}" />
-          </td>
-          </tr>
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="email"><g:message code="usuario.email" default="Email" /></label>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: usuario, field: 'email', 'errors')}">
-          <g:textField name="email" value="${usuario?.email}" />
           </td>
           </tr>
           </tbody>

@@ -9,11 +9,11 @@
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
-        <div class="nav">
+        <!--div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
             <span class="menuButton"><g:link class="list" action="lista"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
             <span class="menuButton"><g:link class="create" action="crear"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
-        </div>
+        </div-->
         <div class="body">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -83,17 +83,7 @@
                                 <td valign="top" class="value ${hasErrors(bean: usuario, field: 'apPaterno', 'errors')}">
                                     <g:textField name="apPaterno" value="${usuario?.apPaterno}" />
                                 </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="email"><g:message code="usuario.email.label" default="Email" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: usuario, field: 'email', 'errors')}">
-                                    <g:textField name="email" value="${usuario?.email}" />
-                                </td>
-                            </tr>
-                        
+                            </tr>                        
                             <tr class="prop">
                                 <td valign="top" class="name">
                                   <label for="enabled"><g:message code="usuario.enabled.label" default="Enabled" /></label>
