@@ -8,12 +8,13 @@ class IngredienteService {
 
     }
 
-    Ingrediente guardaIngrediente(BigDecimal cantidad,Receta receta,MateriaPrima materia){
+    Ingrediente guardaIngrediente(BigDecimal cantidad,Receta receta,MateriaPrima materia,String unidad){
         log.debug "guardaIngrediente"
         Ingrediente ingrediente=new Ingrediente()
         ingrediente.cantidad=cantidad
         ingrediente.receta=receta
         ingrediente.materia=materia
+        ingrediente.unidadMedida=unidad
         ingrediente.save(flush:true)
         return ingrediente
     }

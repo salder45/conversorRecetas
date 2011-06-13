@@ -27,6 +27,7 @@
         </td>
         <td>
           <span class="button"><g:submitButton name="convertir" class="save" value="${message(code: 'receta.editar', default: 'Editar Receta')}" /></span>
+          <span class="button"><g:submitButton name="eliminar" controller="receta" action="eliminar" class="save" value="${message(code: 'receta.eliminar', default: 'Editar Receta')}" /></span>
         </td>
         </tr>
         </thead>

@@ -26,7 +26,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="receta.nombre" default="Nombre" /></td>
         <td valign="top" class="value">${fieldValue(bean: receta, field: "nombre")}</td>
-        <td valign="top" class="name"><g:message code="receta.cantidad" default="Cantidad" /></td>
+        <td valign="top" class="name"><g:message code="receta.porciones" default="Porciones" /></td>
         <td valign="top" class="value">${fieldValue(bean: receta, field: "numPorciones")}</td>
         </tr>
         <tr class="prop">
@@ -44,7 +44,7 @@
           <g:message code="receta.nombre" default="Nombre" />
           </td>
           <td>
-          <g:message code="receta.porciones" default="Porciones" />
+          <g:message code="receta.cantidad" default="Cantidad" />
           </td>
           <td>
           <g:message code="receta.procedimiento" default="Procedimiento" />
@@ -56,7 +56,7 @@
             <tr>
               <td valign="top" align="left" class="value">${i.materia.nombre}</td>
               <td valign="top" align="left" class="value">${i.cantidad}</td>
-              <td valign="top" align="left" class="value">${i.materia.unidadMedida}</td>              
+              <td valign="top" align="left" class="value">${i.unidadMedida}</td>              
               <td valign="top" align="left" class="value"><g:link controller="ingrediente" action="eliminar" id="${i.id}"><g:message code="ingrediente.eliminar" default="Eliminar" /></g:link></td>
             </tr>
           </g:each>

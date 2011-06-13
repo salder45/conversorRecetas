@@ -8,8 +8,6 @@ class Ingrediente {
 
     static belongsTo=[Receta,MateriaPrima]
 
-    static transients=['unidadMedida']
-
     static constraints = {
         cantidad scale:2, precision:8, blank:false
         unidadMedida inList:['Kilogramo','Gramo','Litro','Mililitro','Piezas']

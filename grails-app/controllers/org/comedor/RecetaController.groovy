@@ -143,7 +143,7 @@ class RecetaController {
         log.debug "Params $params"
         MateriaPrima materia=materiaPrimaService.guardaMateriaPrima(params.nombre,params.unidadMedida)
         Receta receta=Receta.get(params.idReceta)
-        Ingrediente ingrediente=ingredienteService.guardaIngrediente(ingredienteService.convierteCantidadConUnidadMedida(params.unidadMedida,new BigDecimal(params.cantidad)),receta,materia)
+        Ingrediente ingrediente=ingredienteService.guardaIngrediente(new BigDecimal(params.cantidad),receta,materia,params.unidadMedida)
         redirect(action:'agregarIngredientes',id:receta.id)
     }
 
