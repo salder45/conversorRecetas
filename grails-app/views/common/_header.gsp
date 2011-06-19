@@ -71,8 +71,8 @@ document.onclick = mclose;
     </li>
     <li><a href="#" onmouseover="mopen('m3')" onmouseout="mclosetime()">Ingrediente</a>
     <div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
-        <g:link controller="ingrediente" action='list' >Buscar</g:link>
-         <g:link controller="ingrediente" action='create' >Crear</g:link>
+        <g:link controller="materiaPrima" action='buscarMateriaPrima' >Buscar</g:link>
+         <g:link controller="materiaPrima" action='crear' >Crear</g:link>
         </div>
     </li>
     

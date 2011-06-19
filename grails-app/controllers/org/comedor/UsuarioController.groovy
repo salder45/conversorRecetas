@@ -9,26 +9,27 @@ class UsuarioController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
-        log.debug "Index"
+        log.debug "Index $params"
         redirect(action: "lista", params: params)
     }
 
     //@Secured(['ROLE_SUPERADMIN'])
     def lista = {
-        log.debug "Lista"
+        log.debug "Lista $params"
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [usuarioList: Usuario.list(params), usuarioTotal: Usuario.count()]
     }
 
     def crear = {
-        log.debug "Crear"
+        log.debug "Crear $params"
         def usuario = new Usuario()
         usuario.properties = params
+        log.debug "usuario $usuario"
         return [usuario: usuario]
     }
 
     def guardar = {
-        log.debug "Guardar"
+        log.debug "Guardar $params"
         def usuario = new Usuario(params)
         usuario.password=springSecurityService.encodePassword(usuario.password)
         usuario.accountExpired=false
@@ -45,7 +46,7 @@ class UsuarioController {
     }
 
     def ver = {
-        log.debug "ver"
+        log.debug "ver $params"
         def usuario = Usuario.get(params.id)
         if (!usuario) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'usuario.label', default: 'Usuario'), params.id])}"
@@ -57,7 +58,7 @@ class UsuarioController {
     }
 
     def editar = {
-        log.debug "Editar"
+        log.debug "Editar $params"
         def usuario = Usuario.get(params.id)
         if (!usuario) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'usuario.label', default: 'Usuario'), params.id])}"
@@ -69,7 +70,7 @@ class UsuarioController {
     }
 
     def actualizar = {
-        log.debug "Actualizar"
+        log.debug "Actualizar $params"
         def usuario = Usuario.get(params.id)
         if (usuario) {
             if (params.version) {
@@ -98,7 +99,7 @@ class UsuarioController {
     }
 
     def eliminar = {
-        log.debug "Eliminar"
+        log.debug "Eliminar $params"
         def usuario = Usuario.get(params.id)
         if (usuario) {
             try {
@@ -118,7 +119,7 @@ class UsuarioController {
     }
 
     def agregaRol={
-        log.debug "busqueda"
+        log.debug "busqueda $params"
         log.debug params
     }
 }

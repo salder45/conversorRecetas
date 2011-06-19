@@ -5,21 +5,21 @@ class IngredienteController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
-        redirect(action: "list", params: params)
+        redirect(action: "lista", params: params)
     }
 
-    def list = {
+    def lista = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [ingredienteInstanceList: Ingrediente.list(params), ingredienteInstanceTotal: Ingrediente.count()]
     }
 
-    def create = {
+    def crear = {
         def ingredienteInstance = new Ingrediente()
         ingredienteInstance.properties = params
         return [ingredienteInstance: ingredienteInstance]
     }
 
-    def save = {
+    def guardar = {
         def ingredienteInstance = new Ingrediente(params)
         if (ingredienteInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), ingredienteInstance.id])}"
@@ -30,7 +30,7 @@ class IngredienteController {
         }
     }
 
-    def show = {
+    def ver = {
         def ingredienteInstance = Ingrediente.get(params.id)
         if (!ingredienteInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), params.id])}"
@@ -41,7 +41,7 @@ class IngredienteController {
         }
     }
 
-    def edit = {
+    def editar = {
         def ingredienteInstance = Ingrediente.get(params.id)
         if (!ingredienteInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), params.id])}"
@@ -52,7 +52,7 @@ class IngredienteController {
         }
     }
 
-    def update = {
+    def actualizar = {
         def ingredienteInstance = Ingrediente.get(params.id)
         if (ingredienteInstance) {
             if (params.version) {

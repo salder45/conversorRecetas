@@ -177,4 +177,8 @@ class RecetaController {
         def result = lista as grails.converters.JSON
         render result
     }
+    
+    def buscarReceta={
+        log.debug "BuscarRecetas"
+    }
 }

@@ -4,99 +4,119 @@ class MateriaPrimaController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     def materiaPrimaService
-
+    
     def index = {
-        redirect(action: "list", params: params)
+        redirect(action: "lista", params: params)
     }
 
-    def list = {
+    def lista = {
+        log.debug "Lista"
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [materiaPrimaInstanceList: MateriaPrima.list(params), materiaPrimaInstanceTotal: MateriaPrima.count()]
+        [materiaList: MateriaPrima.list(params), materiaTotal: MateriaPrima.count()]
     }
 
-    def create = {
-        def materiaPrimaInstance = new MateriaPrima()
-        materiaPrimaInstance.properties = params
-        return [materiaPrimaInstance: materiaPrimaInstance]
+    def crear = {
+        log.debug "Crear "
+        def materia = new MateriaPrima()
+        materia.properties = params
+        return [materia: materia]
     }
 
-    def save = {
-        def materiaPrimaInstance = new MateriaPrima(params)
-        if (materiaPrimaInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), materiaPrimaInstance.id])}"
-            redirect(action: "show", id: materiaPrimaInstance.id)
+    def guardar = {
+        log.debug "Guardar "
+        def materia = new MateriaPrima(params)
+        if (materia.save(flush: true)) {
+            flash.message = "${message(code: 'default.created.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), materia.id])}"
+            redirect(action: "ver", id: materia.id)
         }
         else {
-            render(view: "create", model: [materiaPrimaInstance: materiaPrimaInstance])
+            render(view: "crear", model: [materia: materia])
         }
     }
 
-    def show = {
-        def materiaPrimaInstance = MateriaPrima.get(params.id)
-        if (!materiaPrimaInstance) {
+    def ver = {
+        log.debug "Ver $params"
+        def materia = MateriaPrima.get(params.id)
+        if(params.nombre){
+            log.debug "Entro viene nombre"
+            materia=MateriaPrima.findByNombre(params.nombre)
+        }
+        log.debug "Ver $materia "
+        if (!materia) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), params.id])}"
-            redirect(action: "list")
+            redirect(action: "lista")
         }
         else {
-            [materiaPrimaInstance: materiaPrimaInstance]
+            [materia: materia]
         }
     }
 
-    def edit = {
-        def materiaPrimaInstance = MateriaPrima.get(params.id)
-        if (!materiaPrimaInstance) {
+    def editar = {
+        log.debug "Editar "
+        log.debug "Parametros --> $params "
+        def materia = MateriaPrima.get(params.id)
+        if (!materia) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), params.id])}"
-            redirect(action: "list")
+            redirect(action: "ver")
         }
         else {
-            return [materiaPrimaInstance: materiaPrimaInstance]
+            return [materia: materia]
         }
     }
 
-    def update = {
-        def materiaPrimaInstance = MateriaPrima.get(params.id)
-        if (materiaPrimaInstance) {
+    def actualizar = {
+        log.debug "Actualizar "
+        def materia = MateriaPrima.get(params.id)
+        if (materia) {
             if (params.version) {
                 def version = params.version.toLong()
-                if (materiaPrimaInstance.version > version) {
+                if (materia.version > version) {
                     
-                    materiaPrimaInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'materiaPrima.label', default: 'MateriaPrima')] as Object[], "Another user has updated this MateriaPrima while you were editing")
-                    render(view: "edit", model: [materiaPrimaInstance: materiaPrimaInstance])
+                    materia.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'materiaPrima.label', default: 'MateriaPrima')] as Object[], "Another user has updated this MateriaPrima while you were editing")
+                    render(view: "editar", model: [materia: materia])
                     return
                 }
             }
-            materiaPrimaInstance.properties = params
-            if (!materiaPrimaInstance.hasErrors() && materiaPrimaInstance.save(flush: true)) {
-                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), materiaPrimaInstance.id])}"
-                redirect(action: "show", id: materiaPrimaInstance.id)
+            materia.properties = params
+            if (!materia.hasErrors() && materia.save(flush: true)) {
+                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), materia.id])}"
+                redirect(action: "ver", id: materia.id)
             }
             else {
-                render(view: "edit", model: [materiaPrimaInstance: materiaPrimaInstance])
+                render(view: "editar", model: [materia: materia])
             }
         }
         else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), params.id])}"
-            redirect(action: "list")
+            redirect(action: "lista")
         }
     }
 
-    def delete = {
-        def materiaPrimaInstance = MateriaPrima.get(params.id)
-        if (materiaPrimaInstance) {
+    def eliminar = {
+        log.debug "Eliminar $params"
+        def materia = MateriaPrima.get(params.id)
+        if (materia) {
             try {
-                materiaPrimaInstance.delete(flush: true)
+                materia.delete(flush: true)
                 flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), params.id])}"
-                redirect(action: "list")
+                redirect(action: "lista")
             }
             catch (org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), params.id])}"
-                redirect(action: "show", id: params.id)
+                redirect(action: "ver", id: params.id)
             }
         }
         else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), params.id])}"
-            redirect(action: "list")
+            redirect(action: "lista")
         }
+    }
+    
+    def buscarMateriaPrima={
+        log.debug "buscarMateriaPrima"
+        def materia=new MateriaPrima()
+        materia.properties=params
+        return [materia:materia]
     }
 
 
