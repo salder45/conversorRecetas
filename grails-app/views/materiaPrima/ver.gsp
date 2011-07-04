@@ -21,12 +21,13 @@
     <div class="dialog">
       <table>
         <tbody>
+          <!--
           <tr class="prop">
             <td valign="top" class="name"><g:message code="materiaPrima.id.label" default="Id" /></td>
 
         <td valign="top" class="value">${fieldValue(bean: materia, field: "id")}</td>
 
-        </tr>
+        </tr>-->
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="materiaPrima.nombre.label" default="Nombre" /></td>
@@ -48,7 +49,7 @@
     <div class="buttons">
       <g:form>
         <g:hiddenField name="id" value="${materia?.id}" />
-        <span class="button"><g:actionSubmit class="edit"  action="editar" value="${message(code: 'default.button.edit.label', default: 'Edit')}" /></span>
+        <span class="button"><g:actionSubmit class="edit"  value="${message(code: 'default.button.edit.label', default: 'Edit')}" onclick="this.form.action='${createLink(action:'editar')}/${materia?.id}';"/></span>
         <span class="button"><g:actionSubmit class="delete" action="eliminar" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
       </g:form>
     </div>

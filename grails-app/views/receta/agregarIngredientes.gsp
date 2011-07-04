@@ -64,9 +64,7 @@
             <td valign="top" class="value ${hasErrors(bean: materiaPrima, field: 'nombre', 'errors')}">
           <g:textField name="nombre" value="${fieldValue(bean: materiaPrima, field: 'nombre')}" />
           </td>
-          <td valign="top" class="value ${hasErrors(bean: ingrediente, field: 'cantidad', 'errors')}">
-          <g:textField name="cantidad" value="${fieldValue(bean: ingrediente, field: 'cantidad')}" />
-          </td>
+
           <td valign="top" class="value ${hasErrors(bean: ingrediente, field: 'unidadMedida', 'errors')}">
           <g:select name="unidadMedida" from="${ingrediente.constraints.unidadMedida.inList}" value="${ingrediente?.unidadMedida}" valueMessagePrefix="materiaPrima.unidadMedida"  />
           </td>

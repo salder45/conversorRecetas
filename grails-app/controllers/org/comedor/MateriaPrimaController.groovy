@@ -38,13 +38,12 @@ class MateriaPrimaController {
         log.debug "Ver $params"
         def materia = MateriaPrima.get(params.id)
         if(params.nombre){
-            log.debug "Entro viene nombre"
             materia=MateriaPrima.findByNombre(params.nombre)
         }
         log.debug "Ver $materia "
         if (!materia) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), params.id])}"
-            redirect(action: "lista")
+            redirect(action: "buscarMateriaPrima")
         }
         else {
             [materia: materia]
@@ -88,7 +87,7 @@ class MateriaPrimaController {
         }
         else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), params.id])}"
-            redirect(action: "lista")
+            redirect(action: "buscarMateriaPrima")
         }
     }
 
@@ -97,26 +96,26 @@ class MateriaPrimaController {
         def materia = MateriaPrima.get(params.id)
         if (materia) {
             try {
+                log.debug "try"
                 materia.delete(flush: true)
                 flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), params.id])}"
-                redirect(action: "lista")
+                redirect(action: "buscarMateriaPrima")
             }
             catch (org.springframework.dao.DataIntegrityViolationException e) {
+                log.debug "catch"
                 flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), params.id])}"
                 redirect(action: "ver", id: params.id)
             }
         }
         else {
+            log.debug "else"
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'materiaPrima.label', default: 'MateriaPrima'), params.id])}"
-            redirect(action: "lista")
+            redirect(action: "ver")
         }
     }
     
     def buscarMateriaPrima={
-        log.debug "buscarMateriaPrima"
-        def materia=new MateriaPrima()
-        materia.properties=params
-        return [materia:materia]
+        log.debug "buscarMateriaPrima"        
     }
 
 

@@ -7,6 +7,12 @@
     <meta name="layout" content="main" />
   <g:set var="entityName" value="${message(code: 'receta.label', default: 'Receta')}" />
   <title><g:message code="default.edit.label" args="[entityName]" /></title>
+  <g:javascript library="jquery" />
+  <link rel="stylesheet" href="${resource(contextPath:"",dir:'css',file:'jquery.ui.all.css')}" />
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery',file:'jquery.ui.core.min.js')}"></script>
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery',file:'jquery.ui.widget.min.js')}"></script>
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery',file:'jquery.ui.position.min.js')}"></script>
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery',file:'jquery.ui.autocomplete.min.js')}"></script>
 </head>
 <body>
   <!--div class="nav">
@@ -57,23 +63,46 @@
           <g:textField name="numPorciones" value="${fieldValue(bean: receta, field: 'numPorciones')}" />
           </td>
           </tr>
-
-          <tr class="prop">
+          <table>
+            <thead>
             <td valign="top" class="name">
-              <label for="ingredientes"><g:message code="receta.ingredientes.label" default="Ingredientes" /></label>
+              <label for="nombre"><g:message code="materiaPrima.titulo" default="Nombre" /></label>
             </td>
-            <td valign="top" class="value ${hasErrors(bean: receta, field: 'ingredientes', 'errors')}">
-
-              <ul>
-                <g:each in="${receta?.ingredientes?}" var="i">
-                  <li><g:link controller="ingrediente" action="ver" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
-                </g:each>
-              </ul>
-          <g:link controller="ingrediente" action="crear" params="['receta.id': receta?.id]">${message(code: 'default.add.label', args: [message(code: 'ingrediente.label', default: 'Ingrediente')])}</g:link>
-
-          </td>
-          </tr>
-
+            <td valign="top" class="name">
+              <label for="nombre"><g:message code="ingrediente.cantidad" default="Nombre" /></label>
+            </td>
+            <td valign="top" class="name">
+              <label for="nombre"><g:message code="ingrediente.unidadMedida" default="Nombre" /></label>
+            </td>
+            <td>
+              <br/>
+            </td>
+            </thead>
+            <tbody>
+              <tr>
+                <td valign="top" class="value ${hasErrors(bean: materiaPrima, field: 'nombre', 'errors')}">
+            <g:textField name="nombreMateria" value="${fieldValue(bean: materiaPrima, field: 'nombre')}" />
+            </td>
+            <td valign="top" class="value ${hasErrors(bean: ingrediente, field: 'cantidad', 'errors')}">
+            <g:textField name="cantidad" value="${fieldValue(bean: ingrediente, field: 'cantidad')}" />
+            </td>
+            <td valign="top" class="value ${hasErrors(bean: ingrediente, field: 'unidadMedida', 'errors')}">
+            <g:select name="unidadMedida" from="${ingrediente.constraints.unidadMedida.inList}" value="${ingrediente?.unidadMedida}" valueMessagePrefix="materiaPrima.unidadMedida"  />
+            </td>
+            <td>
+              <span class="button"><g:actionSubmit class="save" action="agregaIngre" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
+            </td>
+            </tr>
+            <g:each in="${receta.ingredientes}" var="i">
+              <tr>
+                <td valign="top" align="left" class="value">${i.materia.nombre}</td>
+                <td valign="top" align="left" class="value">${i.cantidad}</td>
+                <td valign="top" align="left" class="value">${i.unidadMedida}</td>              
+                <td valign="top" align="left" class="value"><g:link controller="ingrediente" action="eliminar" id="${i.id}"><g:message code="ingrediente.eliminar" default="Eliminar" /></g:link></td>
+              </tr>
+            </g:each>
+            </tbody>
+          </table>
           </tbody>
         </table>
       </div>
@@ -83,5 +112,10 @@
       </div>
     </g:form>
   </div>
+  <g:javascript>
+  $(document).ready(function() {
+  $("input#nombreMateria").autocomplete({source: "${request.getContextPath()}/materiaPrima/materiasByNombre"});
+$("input#nombreMateria").focus();});
+</g:javascript>
 </body>
 </html>

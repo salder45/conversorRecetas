@@ -32,10 +32,10 @@ class RecetaController {
         log.debug "guardar"
         log.debug "parametros guardar $params"
         def receta = new Receta(params)
-        receta.nombre=params.nombre.toUpperCase()
+        //receta.nombre=params.nombre.toUpperCase()
         if (receta.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'receta.label', default: 'Receta'), receta.id])}"
-            redirect(action: "agregarIngredientes", id: receta.id)
+            redirect(action: "ver", id: receta.id)
         }
         else {
             render(view: "crear", model: [receta: receta])
@@ -46,9 +46,12 @@ class RecetaController {
         log.debug "ver"
         log.debug "parametros ver $params"
         def receta = Receta.get(params.id)
+        if(params.nombre){
+        receta=Receta.findByNombre(params.nombre)            
+        }
         if (!receta) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])}"
-            redirect(action: "lista")
+            redirect(action: "buscarReceta")
         }
         else {
             [receta: receta]
@@ -61,10 +64,10 @@ class RecetaController {
         def receta = Receta.get(params.id)
         if (!receta) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])}"
-            redirect(action: "lista")
+            redirect(action: "buscarReceta")
         }
         else {
-            return [receta: receta]
+            return [receta: receta,ingrediente:new Ingrediente()]
         }
     }
 
@@ -78,22 +81,24 @@ class RecetaController {
                 if (receta.version > version) {
                     
                     receta.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'receta.label', default: 'Receta')] as Object[], "Another user has updated this Receta while you were editing")
-                    render(view: "editar", model: [receta: receta])
+                    render(view: "ver", model: [receta: receta])
                     return
                 }
             }
             receta.properties = params
             if (!receta.hasErrors() && receta.save(flush: true)) {
                 flash.message = "${message(code: 'default.updated.message', args: [message(code: 'receta.label', default: 'Receta'), receta.id])}"
-                redirect(action: "ver", id: receta.id)
+                log.debug "------------------->$receta.nombre"
+                redirect(action: "ver", id:receta.id)
             }
             else {
+                log.debug "------>145"
                 render(view: "editar", model: [receta: receta])
             }
         }
         else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])}"
-            redirect(action: "lista")
+            redirect(action: "buscarReceta")
         }
     }
 
@@ -105,7 +110,7 @@ class RecetaController {
             try {
                 receta.delete(flush: true)
                 flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])}"
-                redirect(action: "lista")
+                redirect(action: "buscarReceta")
             }
             catch (org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])}"
@@ -114,7 +119,7 @@ class RecetaController {
         }
         else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])}"
-            redirect(action: "lista")
+            redirect(action: "buscarReceta")
         }
     }
 
@@ -123,11 +128,11 @@ class RecetaController {
         log.debug "Parametros $params"
         def receta=null
         if(params.nombre!=null){
-        log.debug "Busca por nombre"
-        receta=Receta.findByNombre(params.nombre.toUpperCase())
+            log.debug "Busca por nombre"
+            receta=Receta.findByNombre(params.nombre.toUpperCase())
         }else if(params.id!=null){
-        log.debug "Busca por id"
-        receta=Receta.get(params.id)
+            log.debug "Busca por id"
+            receta=Receta.get(params.id)
         }
         log.debug "receta = $receta"
         if(!receta){
@@ -162,8 +167,8 @@ class RecetaController {
     }
 
     def capturaDatosEditar={
-     log.debug "capturaDatosEditar"
-     log.debug "Parametros $params"
+        log.debug "capturaDatosEditar"
+        log.debug "Parametros $params"
     }
 
 
@@ -180,5 +185,23 @@ class RecetaController {
     
     def buscarReceta={
         log.debug "BuscarRecetas"
+        log.debug "$params"
+        def receta=new Receta()
+    }
+    
+    def agregaIngre={
+        log.debug "agrega $params"
+        def receta=Receta.findByNombre(params.nombre)
+        log.debug "receta $receta"
+        def materia=MateriaPrima.findByNombre(params.nombreMateria)
+        log.debug "Materia $materia"
+        Ingrediente ingrediente=new Ingrediente()
+        ingrediente.properties=params
+        log.debug "Ingrediente $ingrediente.cantidad"
+        log.debug "Ingrediente $ingrediente.unidadMedida"
+        ingrediente.materia=materia
+        ingrediente.receta=receta
+        ingrediente.save(flush:true)
+        redirect (action:"editar",id:receta.id)
     }
 }
