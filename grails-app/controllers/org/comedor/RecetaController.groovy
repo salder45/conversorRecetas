@@ -101,7 +101,7 @@ class RecetaController {
             redirect(action: "buscarReceta")
         }
     }
-
+/*
     def eliminar= {
         log.debug "eliminar"
         log.debug "parametros eliminar $params"
@@ -113,6 +113,32 @@ class RecetaController {
                 redirect(action: "buscarReceta")
             }
             catch (org.springframework.dao.DataIntegrityViolationException e) {
+                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])}"
+                redirect(action: "ver", id: params.id)
+            }
+        }
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])}"
+            redirect(action: "buscarReceta")
+        }
+    }
+    */
+    def eliminar= {
+        log.debug "eliminar"
+        log.debug "parametros eliminar $params"
+        def receta = Receta.get(params.id)
+        if (receta) {
+            try {
+                for(Ingrediente ingrediente:receta.ingredientes){
+                    log.debug "ingrediente: $ingrediente"
+                    ingrediente.delete()                    
+                }
+                receta.delete(flush: true)
+                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])}"
+                redirect(action: "buscarReceta")
+            }
+            catch (org.springframework.dao.DataIntegrityViolationException e) {
+                log.debug "error de integridad"
                 flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])}"
                 redirect(action: "ver", id: params.id)
             }
@@ -203,5 +229,9 @@ class RecetaController {
         ingrediente.receta=receta
         ingrediente.save(flush:true)
         redirect (action:"editar",id:receta.id)
+    }
+    
+    def dialog={
+        log.debug "dialog Prueba"
     }
 }
