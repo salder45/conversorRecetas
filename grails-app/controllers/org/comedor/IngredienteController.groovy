@@ -20,6 +20,7 @@ class IngredienteController {
     }
 
     def guardar = {
+        log.debug "Guardar"
         def ingredienteInstance = new Ingrediente(params)
         if (ingredienteInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), ingredienteInstance.id])}"
@@ -90,16 +91,16 @@ class IngredienteController {
             try {
                 ingredienteInstance.delete(flush: true)
                 flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), params.id])}"
-                redirect(controller:'receta',action: "agregarIngredientes",id:receta.id)
+                redirect(controller:'receta',action: "editar",id:receta.id)
             }
             catch (org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), params.id])}"
-                redirect(action: "show", id: params.id)
+                redirect(controller:'receta',action: "editar",id:receta.id)
             }
         }
         else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), params.id])}"
-            redirect(action: "list")
+            redirect(controller:'receta',action: "editar",id:receta.id)
         }
     }
 }

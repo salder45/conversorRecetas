@@ -128,5 +128,5 @@ class MateriaPrimaController {
         }
         def result = lista as grails.converters.JSON
         render result
-    }
+    }    
 }

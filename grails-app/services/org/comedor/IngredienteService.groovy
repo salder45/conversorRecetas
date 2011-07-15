@@ -8,16 +8,19 @@ class IngredienteService {
 
     }
 
-    Ingrediente guardaIngrediente(BigDecimal cantidad,Receta receta,MateriaPrima materia,String unidad){
+    Ingrediente guardaIngrediente(BigDecimal cantidad,String unidad,String materia,Receta receta){
         log.debug "guardaIngrediente"
-        Ingrediente ingrediente=new Ingrediente()
+        def materiaPrima=MateriaPrima.findByNombre(materia)
+        log.debug "Cant: $cantidad unidad: $unidad materia: $materia"
+        Ingrediente ingrediente=new Ingrediente()        
         ingrediente.cantidad=cantidad
-        ingrediente.receta=receta
-        ingrediente.materia=materia
         ingrediente.unidadMedida=unidad
+        ingrediente.materia=materiaPrima
+        ingrediente.receta=receta
         ingrediente.save(flush:true)
         return ingrediente
-    }
+    }   
+    
 
     BigDecimal convierteCantidadConUnidadMedida(String unidadMedida,BigDecimal cantidad){
         if(unidadMedida.equals("Gramo")||unidadMedida.equals("Mililitro")){
