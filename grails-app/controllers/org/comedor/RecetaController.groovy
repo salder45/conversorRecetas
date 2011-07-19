@@ -8,37 +8,36 @@ class RecetaController {
     def recetaService
 
     def index = {
-        /*
+        
         log.debug "index"
         log.debug "parametros index $params"
-         */
+        
         //redirect(action: "lista", params: params)
     }
 
-    def lista = {
-        /*
+    def lista = {        
         log.debug "lista"
         log.debug "parametros lista $params"
-         */
+         
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [recetaList: Receta.list(params), recetaTotal: Receta.count()]
     }
 
     def crear = {
-        /*
+        
         log.debug "crear"
         log.debug "parametros crear $params"
-         */
+         
         def receta = new Receta()
         receta.properties = params
         return [receta: receta]
     }
 
     def guardar = {
-        /*
+        
         log.debug "guardar"
         log.debug "parametros guardar $params"
-         */
+         
         def receta = new Receta(params)
         //receta.nombre=params.nombre.toUpperCase()
         if (receta.save(flush: true)) {
@@ -51,10 +50,10 @@ class RecetaController {
     }
 
     def ver = {
-        /*
+        
         log.debug "ver"
         log.debug "parametros ver $params"
-         */
+         
         def receta = Receta.get(params.id)
         if(params.nombre){
             receta=Receta.findByNombre(params.nombre)            
@@ -69,10 +68,10 @@ class RecetaController {
     }
 
     def editar = {
-        /*
+        
         log.debug "editar"
         log.debug "parametros editar $params"
-         */
+         
         def receta = Receta.get(params.id)
         if (!receta) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])}"
@@ -84,10 +83,10 @@ class RecetaController {
     }
 
     def actualizar = {
-        /*
+        
         log.debug "actualizar"
         log.debug "parametros actualizar $params"
-         */
+         
         def receta = Receta.get(params.id)
         if (receta) {
             if (params.version) {
@@ -117,10 +116,10 @@ class RecetaController {
     }
     
     def eliminar= {
-        /*
+        
         log.debug "eliminar"
         log.debug "parametros eliminar $params"
-         */
+         
         def receta = Receta.get(params.id)
         if (receta) {
             try {
@@ -145,17 +144,17 @@ class RecetaController {
     }    
 
     def capturaDatosConversor={
-        /*
+        
         log.debug "capturaDatosConversor"
         log.debug "params capturaDatosConversor$params"
-         */
+         
     }
 
     def convertirReceta={
-        /*
+        
         log.debug "capturaDatosConversor"
         log.debug "Params $params"
-         */
+         
         Receta recetaTmp=new Receta()
         recetaTmp.properties=params
         Receta recetaConvertida=recetaService.convertirReceta(recetaTmp)
@@ -164,9 +163,9 @@ class RecetaController {
 
 
     def recetasByNombre={
-        /*
+        
         log.debug "Recetas Busqueda por nombre $params"
-         */
+         
         def lista = []        
         for(receta in recetaService.listaByNombre(params?.term)) {
             log.debug "Receta---!> $receta"
@@ -177,10 +176,10 @@ class RecetaController {
     }
     
     def buscarReceta={
-        /*
+        
         log.debug "BuscarRecetas"
         log.debug "$params"
-         */
+         
         def receta=new Receta()
     }
     
@@ -190,6 +189,7 @@ class RecetaController {
         ingredienteService.guardaIngrediente(new BigDecimal(params.cantidad),params.unidadMedida,params.nombreMateria,receta)
         redirect (action:"editar",id:receta.id)
     }
+    
     
     def dialog={
         log.debug "dialog $params"        
