@@ -171,6 +171,11 @@ class RecetaController {
         redirect (action:"editar",id:receta.id)
     }
     
+    def capturaDatosConversor={
+        log.debug "capturaDatosConversor"
+        log.debug "Paramtros: $params"
+    }
+    
     def datosConversion={
         log.debug "datosConversion"
         log.debug "Paramtros: $params"
