@@ -141,27 +141,8 @@ class RecetaController {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])}"
             redirect(action: "buscarReceta")
         }
-    }    
-
-    def capturaDatosConversor={
-        
-        log.debug "capturaDatosConversor"
-        log.debug "params capturaDatosConversor$params"
-         
     }
-
-    def convertirReceta={
-        
-        log.debug "capturaDatosConversor"
-        log.debug "Params $params"
-         
-        Receta recetaTmp=new Receta()
-        recetaTmp.properties=params
-        Receta recetaConvertida=recetaService.convertirReceta(recetaTmp)
-        [recetaConvertida:recetaConvertida]
-    }   
-
-
+    
     def recetasByNombre={
         
         log.debug "Recetas Busqueda por nombre $params"
@@ -190,8 +171,13 @@ class RecetaController {
         redirect (action:"editar",id:receta.id)
     }
     
+    def datosConversion={
+        log.debug "datosConversion"
+        log.debug "Paramtros: $params"
+    }
     
-    def dialog={
-        log.debug "dialog $params"        
+    def convertir={
+        log.debug "convertir"
+        log.debug "Paramtros: $params"
     }
 }

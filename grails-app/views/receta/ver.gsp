@@ -6,6 +6,18 @@
     <meta name="layout" content="main" />
   <g:set var="entityName" value="${message(code: 'receta.label', default: 'Receta')}" />
   <title><g:message code="default.show.label" args="[entityName]" /></title>
+  <g:javascript library="jquery" />
+  <link rel="stylesheet" href="${resource(contextPath:"",dir:'css',file:'jquery.ui.all.css')}" />
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery/minified',file:'jquery.ui.core.min.js')}"></script>
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery/minified',file:'jquery.ui.widget.min.js')}"></script>
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery/minified',file:'jquery.ui.position.min.js')}"></script>
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery/external',file:'jquery.bgiframe-2.1.2.js')}"></script>  
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery',file:'jquery.ui.mouse.js')}"></script>  
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery',file:'jquery.ui.button.js')}"></script>  
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery',file:'jquery.ui.draggable.js')}"></script>
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery',file:'jquery.ui.resizable.js')}"></script>  
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery',file:'jquery.ui.dialog.js')}"></script>  
+  <script type="text/javascript" src="${resource(contextPath:"",dir:'js/jquery',file:'jquery.effects.core.js')}"></script>
 </head>
 <body>
   <div class="body">
@@ -66,10 +78,15 @@
               <td valign="top" align="left" class="value">${i.materia.nombre}</td>
               <td valign="top" align="left" class="value">${i.cantidad}</td>
               <td valign="top" align="left" class="value">${i.unidadMedida}</td>              
-              </tr>
+            </tr>
           </g:each>
           </tbody>
         </table>
+        <tr>
+          <td valign="top" class="name">
+            <button id="desplegar"><label for="nombre"><g:message code="receta.convertir" default="Nombre" /></label></button>
+          </td>
+        <tr/>
 
         </tbody>
       </table>
@@ -80,7 +97,36 @@
         <span class="button"><g:actionSubmit class="edit" value="${message(code: 'default.button.edit.label', default: 'Edit')}" onclick="this.form.action='${createLink(action:'editar')}/${receta?.id}';"/></span>
         <span class="button"><g:actionSubmit class="delete" action="eliminar" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
       </g:form>
-    </div>
+    </div>  
   </div>
+    <div id="conversion-div">
+    <g:form action="convertir">
+      <g:hiddenField name="id" value="${receta?.id}"/>
+      <tr class="prop">
+        <td valign="top" class="name">
+          <label for="porcionesAConvertir"><g:message code="receta.convertir" default="Receta" /></label>
+        </td>
+        <td valign="top" class="value ${hasErrors(bean: receta, field: 'nombre', 'errors')}">
+      <g:textField name="porcionesAConvertir" value="${porcionesAConvertir}" />
+      </td>
+      </tr>
+      <div class="buttons">
+        <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'receta.convertir', default: 'Convertir')}" /></span>
+      </div>
+    </g:form>    
+  </div>
+<g:javascript>
+  $(document).ready(function() {
+  $("#conversion-div").dialog({autoOpen:false,
+  height: 100,
+			width: 250,
+			modal: true});
+  $("#desplegar").button().click(function(){
+$("#conversion-div").dialog("open");
+});
+});
+
+
+</g:javascript>
 </body>
 </html>

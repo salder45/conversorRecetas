@@ -63,7 +63,7 @@ document.onclick = mclose;
     </li>
     <li><a href="#" onmouseover="mopen('m1')" onmouseout="mclosetime()">Receta</a>
     <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
-       <g:link controller="receta" action='capturaDatosConversor' >Convertir</g:link>
+       <!--<g:link controller="receta" action='capturaDatosConversor' >Convertir</g:link>-->
         <g:link controller="receta" action='buscarReceta' >Buscar</g:link>
           <g:link controller="receta" action='crear' >Crear</g:link>
           <!--
