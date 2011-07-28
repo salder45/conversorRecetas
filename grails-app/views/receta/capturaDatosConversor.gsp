@@ -27,7 +27,7 @@
         </td>
         <td valign="top" class="value ${hasErrors(bean: receta, field: 'numPorciones', 'errors')}">
         <g:message code="receta.porciones" default="Porciones" />
-        <g:textField name="numPorciones" value="${fieldValue(bean: receta, field: 'numPorciones')}" />
+        <g:textField name="porcionesAConvertir" value="${porcionesAConvertir}" />
         </td>
         <td>
           <span class="button"><g:submitButton name="convertir" class="save" value="${message(code: 'receta.convertir', default: 'Convertir Receta')}" /></span>

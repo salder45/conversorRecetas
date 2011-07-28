@@ -8,12 +8,13 @@ class IngredienteService {
 
     }
 
-    Ingrediente guardaIngrediente(BigDecimal cantidad,String unidad,String materia,Receta receta){
+    Ingrediente guardaIngrediente(BigDecimal cantidad,String unidad,String materia,Receta receta,String presentacion){
         log.debug "guardaIngrediente"
         def materiaPrima=MateriaPrima.findByNombre(materia)
         log.debug "Cant: $cantidad unidad: $unidad materia: $materia"
         Ingrediente ingrediente=new Ingrediente()        
         ingrediente.cantidad=cantidad
+        ingrediente.presentacion=presentacion
         ingrediente.unidadMedida=unidad
         ingrediente.materia=materiaPrima
         ingrediente.receta=receta

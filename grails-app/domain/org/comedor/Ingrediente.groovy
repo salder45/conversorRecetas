@@ -5,6 +5,7 @@ class Ingrediente {
     Receta receta
     MateriaPrima materia
     String unidadMedida
+    String presentacion
 
     static belongsTo=[Receta,MateriaPrima]
 

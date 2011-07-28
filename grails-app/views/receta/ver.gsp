@@ -100,7 +100,7 @@
     </div>  
   </div>
     <div id="conversion-div">
-    <g:form action="convertir">
+    <g:form action="convertirReceta">
       <g:hiddenField name="id" value="${receta?.id}"/>
       <tr class="prop">
         <td valign="top" class="name">

@@ -115,6 +115,9 @@
           <label for="nombre"><g:message code="materiaPrima.titulo" default="Nombre" /></label>
         </td>
         <td valign="top" class="name">
+          <label for="nombre"><g:message code="ingrediente.presentacion" default="Nombre" /></label>
+        </td>
+        <td valign="top" class="name">
           <label for="nombre"><g:message code="ingrediente.cantidad" default="Nombre" /></label>
         </td>
         <td valign="top" class="name">
@@ -128,6 +131,9 @@
           <tr>
             <td valign="top" class="value ${hasErrors(bean: materiaPrima, field: 'nombre', 'errors')}">
         <g:textField name="nombreMateria" value="${fieldValue(bean: materiaPrima, field: 'nombre')}" />
+        </td>
+        <td valign="top" class="value ${hasErrors(bean: ingrediente, field: 'presentacion', 'errors')}">
+        <g:textField name="presentacion" value="${fieldValue(bean: ingrediente, field: 'presentacion')}" />
         </td>
         <td valign="top" class="value ${hasErrors(bean: ingrediente, field: 'cantidad', 'errors')}">
         <g:textField name="cantidad" value="${fieldValue(bean: ingrediente, field: 'cantidad')}" />
@@ -147,7 +153,7 @@
   $(document).ready(function() {
   $("#form-add").dialog({autoOpen:false,
   height: 150,
-			width: 550,
+			width: 650,
 			modal: true});
   $("#desplegar").button().click(function(){
   $("#form-add").dialog("open");

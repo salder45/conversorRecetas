@@ -167,7 +167,7 @@ class RecetaController {
     def agregaIngrediente={
         log.debug "Agrega Ingredientes parametros ---->$params"
         def receta=Receta.get(params.id)
-        ingredienteService.guardaIngrediente(new BigDecimal(params.cantidad),params.unidadMedida,params.nombreMateria,receta)
+        ingredienteService.guardaIngrediente(new BigDecimal(params.cantidad),params.unidadMedida,params.nombreMateria,receta,params.presentacion)
         redirect (action:"editar",id:receta.id)
     }
     
@@ -175,13 +175,13 @@ class RecetaController {
         log.debug "capturaDatosConversor"
         log.debug "Paramtros: $params"
     }
-    
+   /* 
     def datosConversion={
         log.debug "datosConversion"
         log.debug "Paramtros: $params"
     }
-    
-    def convertir={
+    */
+    def convertirReceta={
         log.debug "convertir"
         log.debug "Paramtros: $params"
     }
