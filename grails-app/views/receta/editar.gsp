@@ -80,6 +80,9 @@
             <label for="nombre"><g:message code="ingrediente.cantidad" default="Nombre" /></label>
           </td>
           <td valign="top" class="name">
+            <label for="nombre"><g:message code="ingrediente.presentacion" default="Nombre" /></label>
+          </td>
+          <td valign="top" class="name">
             <label for="nombre"><g:message code="ingrediente.unidadMedida" default="Nombre" /></label>
           </td>          
           <td>
@@ -91,10 +94,10 @@
             <tr>
               <td valign="top" align="left" class="value">${i.materia.nombre}</td>
               <td valign="top" align="left" class="value">${i.cantidad}</td>
+              <td valign="top" align="left" class="value">${i.presentacion}</td>
               <td valign="top" align="left" class="value">${i.unidadMedida}</td>              
-              <td valign="top" align="left" class="value"><g:link controller="ingrediente" action="eliminar" id="${i.id}"><g:message code="ingrediente.eliminar" default="Eliminar" /></g:link></td>
-            </tr>
-          </g:each>
+              <td valign="top" align="left" class="value"><g:link controller="ingrediente" action="eliminar" id="${i.id}"><g:message code="ingrediente.eliminar" default="Eliminar" /></g:link></td>         
+              </tr></g:each>
           <tr>
             <td valign="top" class="name">
               <button id="desplegar">Agregar</button>
@@ -148,17 +151,14 @@
         </tbody>
       </table>      
     </g:form>
-  </div>
+  </div>  
 <g:javascript>
   $(document).ready(function() {
   $("#form-add").dialog({autoOpen:false,
-  height: 150,
-			width: 650,
-			modal: true});
+  height: 150,width: 750,modal: true});
   $("#desplegar").button().click(function(){
   $("#form-add").dialog("open");
   });
-
   $("input#nombreMateria").autocomplete({source: "${request.getContextPath()}/materiaPrima/materiasByNombre"});
 $("input#nombreMateria").focus();});
 

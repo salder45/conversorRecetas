@@ -43,6 +43,7 @@ class IngredienteController {
     }
 
     def editar = {
+        log.debug "editar $params"
         def ingredienteInstance = Ingrediente.get(params.id)
         if (!ingredienteInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'ingrediente.label', default: 'Ingrediente'), params.id])}"

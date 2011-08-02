@@ -66,6 +66,9 @@
             <label for="nombre"><g:message code="ingrediente.cantidad" default="Nombre" /></label>
           </td>
           <td valign="top" class="name">
+            <label for="nombre"><g:message code="ingrediente.presentacion" default="Nombre" /></label>
+          </td>
+          <td valign="top" class="name">
             <label for="nombre"><g:message code="ingrediente.unidadMedida" default="Nombre" /></label>
           </td>
           <td>
@@ -77,6 +80,7 @@
             <tr>
               <td valign="top" align="left" class="value">${i.materia.nombre}</td>
               <td valign="top" align="left" class="value">${i.cantidad}</td>
+              <td valign="top" align="left" class="value">${i.presentacion}</td>
               <td valign="top" align="left" class="value">${i.unidadMedida}</td>              
             </tr>
           </g:each>

@@ -23,8 +23,7 @@ class RecetaController {
         [recetaList: Receta.list(params), recetaTotal: Receta.count()]
     }
 
-    def crear = {
-        
+    def crear = {        
         log.debug "crear"
         log.debug "parametros crear $params"
          
@@ -156,11 +155,9 @@ class RecetaController {
         render result
     }
     
-    def buscarReceta={
-        
+    def buscarReceta={        
         log.debug "BuscarRecetas"
-        log.debug "$params"
-         
+        log.debug "$params"         
         def receta=new Receta()
     }
     
@@ -175,14 +172,26 @@ class RecetaController {
         log.debug "capturaDatosConversor"
         log.debug "Paramtros: $params"
     }
-   /* 
-    def datosConversion={
-        log.debug "datosConversion"
-        log.debug "Paramtros: $params"
-    }
-    */
+   
     def convertirReceta={
         log.debug "convertir"
-        log.debug "Paramtros: $params"
+        log.debug "Parametros: $params"
+        Receta receta;
+        if(params.id){
+            log.debug "por id"
+            receta=Receta.get(params.id)
+        }else{
+            log.debug "por nombre"
+            receta=Receta.findByNombre(params.nombre)
+        }
+        return [recetaConvertida:recetaService.convierteReceta(receta,new BigDecimal(params.porcionesAConvertir)),cantidadAConvertir:params.porcionesAConvertir]
+        
+    }
+    
+    def reporte={
+        log.debug "Reporte Params $params"
+        Receta receta=Receta.findByNombre(params.nombre)
+        Receta recetaConvertida=recetaService.convierteReceta(receta,new BigDecimal(params.porcionesAConvertir))
+        chain(controller: "jasper", action: "index", model: [data: recetaConvertida], params: params)
     }
 }

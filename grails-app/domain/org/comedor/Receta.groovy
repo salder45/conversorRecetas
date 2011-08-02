@@ -3,7 +3,7 @@ package org.comedor
 class Receta {
     String nombre
     String procedimiento
-    BigDecimal numPorciones;
+    BigDecimal numPorciones
     
 
     static hasMany=[ingredientes:Ingrediente]
